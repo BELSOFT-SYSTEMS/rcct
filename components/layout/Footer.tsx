@@ -3,40 +3,41 @@ import { company } from "@/data/content";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0a0a0a] border-t border-white/5">
-      {/* Top section */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+    <footer className="bg-[#060606] border-t border-white/[0.05]">
+      <div className="cw py-20 grid grid-cols-1 md:grid-cols-3 gap-16">
+
         {/* Brand */}
         <div>
-          <div className="flex items-center gap-3 mb-6">
-            <div className="relative w-10 h-10 flex items-center justify-center flex-shrink-0">
-              <div className="absolute inset-0 bg-[#cc0000] transform rotate-45" />
-              <span className="relative text-white font-black text-sm z-10">R</span>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="relative w-9 h-9 flex-shrink-0">
+              <div className="absolute inset-0 bg-[#cc0000] rotate-45"/>
+              <span className="relative z-10 flex h-full items-center justify-center
+                               text-white font-black text-xs">R</span>
             </div>
             <div>
-              <p className="text-white font-black tracking-[0.2em] text-xl" style={{ fontFamily: "var(--font-display)" }}>
-                RTCC
+              <p className="text-white font-black tracking-[0.22em] text-lg leading-none"
+                 style={{fontFamily:"var(--font-display)"}}>RTCC</p>
+              <p className="text-[#2a2a2a] text-[0.55rem] tracking-[0.2em] uppercase mt-0.5">
+                Concepts Ltd · {company.rc}
               </p>
-              <p className="text-[#555] text-[10px] tracking-[0.15em] uppercase">Concepts Ltd · {company.rc}</p>
             </div>
           </div>
-          <p className="text-[#555] text-sm leading-relaxed max-w-xs">
-            {company.tagline}
-          </p>
-          <div className="mt-6 h-px bg-gradient-to-r from-[#cc0000]/50 to-transparent w-24" />
+          <p className="text-[#2e2e2e] text-[0.85rem] leading-[1.9] max-w-xs">{company.tagline}</p>
+          <div className="mt-7 w-16 h-px bg-gradient-to-r from-[#cc0000]/50 to-transparent"/>
         </div>
 
-        {/* Quick Links */}
+        {/* Quick links */}
         <div>
-          <h4 className="text-[#888] text-xs tracking-[0.2em] uppercase font-semibold mb-6">Quick Links</h4>
-          <ul className="space-y-3">
-            {["#about", "#services", "#experience", "#partners", "#contact"].map((href) => (
-              <li key={href}>
-                <a
-                  href={href}
-                  className="text-[#555] hover:text-[#cc0000] text-sm capitalize tracking-wide transition-colors animated-underline"
-                >
-                  {href.replace("#", "")}
+          <p className="text-[#282828] text-[0.6rem] tracking-[0.3em] uppercase font-semibold mb-7">
+            Quick Links
+          </p>
+          <ul className="space-y-4 list-none">
+            {["#about","#services","#experience","#partners","#contact"].map(h => (
+              <li key={h}>
+                <a href={h}
+                   className="text-[#2e2e2e] hover:text-[#cc0000] text-[0.85rem]
+                              capitalize tracking-wide transition-colors">
+                  {h.replace("#","")}
                 </a>
               </li>
             ))}
@@ -45,37 +46,41 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <h4 className="text-[#888] text-xs tracking-[0.2em] uppercase font-semibold mb-6">Contact</h4>
-          <div className="space-y-4">
+          <p className="text-[#282828] text-[0.6rem] tracking-[0.3em] uppercase font-semibold mb-7">
+            Contact
+          </p>
+          <div className="space-y-5">
             <div className="flex gap-3">
-              <MapPin size={16} className="text-[#cc0000] mt-0.5 flex-shrink-0" />
-              <p className="text-[#555] text-sm leading-relaxed">{company.address}</p>
+              <MapPin size={15} className="text-[#cc0000] mt-0.5 flex-shrink-0"/>
+              <p className="text-[#2e2e2e] text-[0.85rem] leading-[1.85]">{company.address}</p>
             </div>
-            {company.phones.map((phone) => (
-              <div key={phone} className="flex gap-3 items-center">
-                <Phone size={16} className="text-[#cc0000] flex-shrink-0" />
-                <a href={`tel:${phone}`} className="text-[#555] hover:text-[#c9a84c] text-sm font-mono transition-colors">
-                  {phone}
+            {company.phones.map(ph => (
+              <div key={ph} className="flex gap-3 items-center">
+                <Phone size={15} className="text-[#cc0000] flex-shrink-0"/>
+                <a href={`tel:${ph}`}
+                   className="text-[#2e2e2e] hover:text-[#c9a84c] font-mono
+                              text-[0.82rem] transition-colors">
+                  {ph}
                 </a>
               </div>
             ))}
             <div className="flex gap-3 items-start">
-              <Building2 size={16} className="text-[#cc0000] mt-0.5 flex-shrink-0" />
-              <p className="text-[#555] text-sm">Established {company.established} · Incorporated {company.incorporated}</p>
+              <Building2 size={15} className="text-[#cc0000] mt-0.5 flex-shrink-0"/>
+              <p className="text-[#2e2e2e] text-[0.85rem]">
+                Est. {company.established} · Inc. {company.incorporated}
+              </p>
             </div>
           </div>
         </div>
+
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-white/5 py-6 px-6 lg:px-12">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-[#333] text-xs tracking-wider">
+      <div className="border-t border-white/[0.04] py-7">
+        <div className="cw flex flex-col sm:flex-row justify-between items-center gap-3">
+          <p className="text-[#1e1e1e] text-[0.72rem] tracking-wider">
             © {new Date().getFullYear()} RTCC Concepts Ltd · {company.rc} · All rights reserved.
           </p>
-          <p className="text-[#333] text-xs tracking-wider">
-            FCT Abuja, Nigeria
-          </p>
+          <p className="text-[#1e1e1e] text-[0.72rem] tracking-wider">FCT Abuja, Nigeria</p>
         </div>
       </div>
     </footer>

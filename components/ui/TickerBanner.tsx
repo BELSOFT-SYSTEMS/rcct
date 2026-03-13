@@ -3,18 +3,20 @@ import { company } from "@/data/content";
 const items = [
   company.tagline,
   "Civil Engineering · Telecommunications · Oil & Gas",
-  company.tagline,
-  "Est. 2008 · RC1150194 · Abuja, Nigeria",
+  `Est. ${company.established} · ${company.rc} · Abuja, Nigeria`,
+  "Architecture · Estate Management · Procurement & Logistics",
 ];
 
 export default function TickerBanner() {
+  const track = [...items, ...items, ...items, ...items];
   return (
-    <div className="bg-[#cc0000] py-3 overflow-hidden">
-      <div className="flex animate-marquee whitespace-nowrap">
-        {[...items, ...items].map((item, i) => (
-          <span key={i} className="mx-12 text-white text-xs font-semibold tracking-[0.2em] uppercase flex-shrink-0">
-            {item}
-            <span className="mx-12 opacity-50">◆</span>
+    <div className="overflow-hidden bg-[#cc0000] py-3.5 border-y border-[#aa0000]">
+      <div className="flex whitespace-nowrap mq">
+        {track.map((t, i) => (
+          <span key={i} className="inline-flex items-center gap-8 px-10 flex-shrink-0
+                                   text-white/85 text-[0.58rem] font-semibold tracking-[0.3em] uppercase">
+            {t}
+            <span className="text-white/25 text-[0.45rem]">◆</span>
           </span>
         ))}
       </div>
