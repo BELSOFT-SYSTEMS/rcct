@@ -19,56 +19,48 @@ export const services = [
     title: "Civil Engineering",
     description: "Expert civil engineering solutions including road construction, drainage systems, and structural development across Nigeria.",
     icon: "🏗️",
-    color: "#cc0000",
   },
   {
     id: "telecommunications",
     title: "Telecommunications",
     description: "Comprehensive telecom infrastructure — tower construction, OFC cabling, manhole construction and fiber optic deployment.",
     icon: "📡",
-    color: "#c9a84c",
   },
   {
     id: "manhole",
     title: "Manhole Cover Production & Supply",
     description: "In-house production and supply of high-quality telecom manhole covers meeting industry specifications.",
     icon: "⚙️",
-    color: "#cc0000",
   },
   {
     id: "mne",
     title: "Mechanical & Electrical Services",
     description: "Full-spectrum mechanical and electrical engineering services for industrial and commercial projects.",
     icon: "⚡",
-    color: "#c9a84c",
   },
   {
     id: "architecture",
     title: "Architecture & Estate Management",
     description: "Architectural design and estate development, from housing construction to large-scale property development.",
     icon: "🏛️",
-    color: "#cc0000",
   },
   {
     id: "oil-gas",
     title: "Oil & Gas",
     description: "Specialized services in the oil and gas sector, providing engineering and logistical support.",
     icon: "🛢️",
-    color: "#c9a84c",
   },
   {
     id: "procurement",
     title: "Procurement & Supply",
     description: "Efficient procurement and supply chain management including telecom materials and accessories.",
     icon: "📦",
-    color: "#cc0000",
   },
   {
     id: "transport",
     title: "Transportation, Clearing & Forwarding",
     description: "End-to-end logistics: port pickup, container unloading, warehousing, distribution, and delivery.",
     icon: "🚚",
-    color: "#c9a84c",
   },
 ];
 
@@ -206,4 +198,11 @@ export const stats = [
   { value: "2", label: "Countries Served" },
   { value: "50+", label: "Projects Delivered" },
   { value: "8", label: "Service Sectors" },
+];
+
+export const navLinks = [
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+  { label: "Contact", href: "/contact" },
 ];

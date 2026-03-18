@@ -1,92 +1,168 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, Phone } from "lucide-react";
-
-const links = [
-  { label:"About",      href:"#about" },
-  { label:"Services",   href:"#services" },
-  { label:"Experience", href:"#experience" },
-  { label:"Partners",   href:"#partners" },
-  { label:"Contact",    href:"#contact" },
-];
+import { navLinks, company } from "@/data/content";
 
 export default function Navbar() {
-  const [open,   setOpen]   = useState(false);
-  const [solid,  setSolid]  = useState(false);
+  const [open, setOpen]       = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname              = usePathname();
+
   useEffect(() => {
-    const fn = () => setSolid(window.scrollY > 60);
-    window.addEventListener("scroll", fn, { passive:true });
+    const fn = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
+  // Close drawer on route change
+  useEffect(() => { setOpen(false); }, [pathname]);
+
+  const active = (h: string) =>
+    pathname === h || (h !== "/" && pathname.startsWith(h));
+
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-      solid ? "bg-[#090909]/95 backdrop-blur-md border-b border-white/[0.05]" : "bg-transparent"
-    }`}>
-      <div className="cw">
-        <nav className="flex items-center justify-between h-[88px]">
+    <header style={{
+      position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
+      transition: "background 0.3s, box-shadow 0.3s",
+      background: scrolled ? "rgba(8,8,8,0.97)" : "rgba(8,8,8,0.85)",
+      backdropFilter: "blur(12px)",
+      borderBottom: scrolled ? "1px solid rgba(255,255,255,0.08)" : "1px solid transparent",
+    }}>
 
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-3 no-underline group">
-            <div className="relative w-9 h-9 flex-shrink-0">
-              <div className="absolute inset-0 bg-[#cc0000] rotate-45 group-hover:rotate-[54deg] transition-transform duration-300" />
-              <span className="relative z-10 flex h-full items-center justify-center text-white font-black text-xs">R</span>
-            </div>
-            <div>
-              <p className="text-white font-black tracking-[0.22em] text-lg leading-none"
-                 style={{fontFamily:"var(--font-display)"}}>RTCC</p>
-              <p className="text-[#3a3a3a] text-[0.55rem] tracking-[0.2em] uppercase mt-0.5">Concepts Ltd</p>
-            </div>
+      {/* ── Top utility bar — hidden on mobile ── */}
+      <div className="topbar" style={{ background: "#cc0000" }}>
+        <div className="container" style={{
+          display: "flex", justifyContent: "space-between",
+          alignItems: "center", height: "38px",
+        }}>
+          <span style={{ color: "rgba(255,255,255,0.9)", fontSize: "13px", fontWeight: 600, letterSpacing: "0.04em" }}>
+            RC1150194 · Incorporated 2013 · CAC Nigeria
+          </span>
+          <a href={`tel:${company.phones[0]}`} style={{
+            display: "flex", alignItems: "center", gap: "8px",
+            color: "#fff", fontSize: "13px", fontWeight: 600, textDecoration: "none",
+          }}>
+            <Phone size={14} />
+            {company.phones[0]}
           </a>
-
-          {/* Desktop links */}
-          <ul className="hidden lg:flex items-center gap-10 list-none">
-            {links.map(l => (
-              <li key={l.href}>
-                <a href={l.href} className="nu text-[#4a4a4a] hover:text-white text-[0.68rem]
-                   tracking-[0.16em] uppercase font-medium transition-colors duration-200">{l.label}</a>
-              </li>
-            ))}
-          </ul>
-
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-6">
-            <a href="tel:+2348022200927"
-               className="flex items-center gap-2 text-[#c9a84c] hover:text-[#e8c96a] transition-colors">
-              <Phone size={13} strokeWidth={1.5} />
-              <span className="font-mono text-[0.62rem] tracking-widest">+234 802 220 0927</span>
-            </a>
-            <a href="#contact"
-               className="px-6 py-2.5 bg-[#cc0000] hover:bg-[#e00] text-white
-                          text-[0.62rem] font-bold tracking-[0.22em] uppercase transition-colors">
-              Get in Touch
-            </a>
-          </div>
-
-          {/* Mobile toggle */}
-          <button className="lg:hidden text-white p-1" onClick={() => setOpen(o => !o)}>
-            {open ? <X size={20}/> : <Menu size={20}/>}
-          </button>
-        </nav>
+        </div>
       </div>
 
-      {/* Mobile drawer */}
-      <div className={`lg:hidden overflow-hidden transition-all duration-300
-                       bg-[#101010] border-t border-white/[0.05]
-                       ${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
-        <div className="cw py-8 flex flex-col gap-1">
-          {links.map(l => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)}
-               className="text-[#555] hover:text-white text-[0.68rem] tracking-[0.18em]
-                          uppercase font-medium py-3.5 border-b border-white/[0.05] transition-colors">
+      {/* ── Main nav row ── */}
+      <div className="container" style={{
+        display: "flex", alignItems: "center",
+        justifyContent: "space-between", height: "70px",
+      }}>
+
+        {/* Logo */}
+        <Link href="/" onClick={() => setOpen(false)} style={{
+          display: "flex", alignItems: "center", gap: "14px", textDecoration: "none", flexShrink: 0,
+        }}>
+          <div style={{ position: "relative", width: "42px", height: "42px" }}>
+            <div style={{
+              position: "absolute", inset: 0, background: "#cc0000",
+              transform: "rotate(45deg)", transition: "transform 0.3s",
+            }} />
+            <span style={{
+              position: "relative", zIndex: 1,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              height: "100%", color: "#fff", fontWeight: 900, fontSize: "16px",
+            }}>R</span>
+          </div>
+          <div>
+            <div style={{
+              fontFamily: "var(--font-display)", color: "#fff",
+              fontWeight: 900, fontSize: "22px", letterSpacing: "0.18em", lineHeight: 1,
+            }}>RTCC</div>
+            <div style={{
+              color: "rgba(255,255,255,0.3)", fontSize: "11px",
+              letterSpacing: "0.2em", textTransform: "uppercase",
+              fontWeight: 600, marginTop: "3px",
+            }}>Concepts Ltd</div>
+          </div>
+        </Link>
+
+        {/* Desktop nav links — hidden on mobile */}
+        <nav className="hidden lg:flex" style={{ alignItems: "center", gap: "4px" }}>
+          {navLinks.map(l => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className={`nav-link${active(l.href) ? " active" : ""}`}
+            >
               {l.label}
-            </a>
+            </Link>
           ))}
-          <a href="#contact" onClick={() => setOpen(false)}
-             className="mt-5 text-center bg-[#cc0000] text-white
-                        text-[0.68rem] font-bold tracking-[0.22em] uppercase py-4">
+        </nav>
+
+        {/* Desktop CTA — hidden on mobile */}
+        <div className="hidden lg:block">
+          <Link href="/contact" className="btn btn-red btn-sm">
             Get in Touch
-          </a>
+          </Link>
+        </div>
+
+        {/* Hamburger — hidden on desktop, shown on mobile */}
+        <button
+          onClick={() => setOpen(o => !o)}
+          className="lg:hidden"
+          aria-label="Toggle menu"
+          style={{
+            background: "none", border: "none", color: "#fff",
+            cursor: "pointer", padding: "8px",
+            lineHeight: 0,
+          }}
+        >
+          {open ? <X size={26} /> : <Menu size={26} />}
+        </button>
+      </div>
+
+      {/* ── Mobile drawer — hidden on desktop ── */}
+      <div
+        className="lg:hidden"
+        style={{
+          overflow: "hidden",
+          maxHeight: open ? "520px" : "0",
+          opacity: open ? 1 : 0,
+          transition: "max-height 0.35s ease, opacity 0.28s ease",
+          background: "#0d0d0d",
+          borderTop: "1px solid rgba(255,255,255,0.07)",
+        }}
+      >
+        <div className="container" style={{
+          paddingTop: "24px", paddingBottom: "36px",
+          display: "flex", flexDirection: "column", gap: "2px",
+        }}>
+          {navLinks.map(l => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              style={{
+                display: "block",
+                fontSize: "16px", fontWeight: 600,
+                letterSpacing: "0.06em", textTransform: "uppercase",
+                padding: "18px 0",
+                borderBottom: "1px solid rgba(255,255,255,0.06)",
+                color: active(l.href) ? "#cc0000" : "rgba(255,255,255,0.5)",
+                textDecoration: "none",
+                transition: "color 0.2s",
+              }}
+            >
+              {l.label}
+            </Link>
+          ))}
+
+          <Link
+            href="/contact"
+            onClick={() => setOpen(false)}
+            className="btn btn-red"
+            style={{ marginTop: "24px", width: "100%", justifyContent: "center" }}
+          >
+            Get in Touch
+          </Link>
         </div>
       </div>
     </header>

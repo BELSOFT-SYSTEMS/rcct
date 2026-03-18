@@ -1,86 +1,96 @@
-import { MapPin, Phone, Building2 } from "lucide-react";
-import { company } from "@/data/content";
+'use client';
+import Link from "next/link";
+import { MapPin, Phone, Building2, ArrowRight, Mail } from "lucide-react";
+import { company, navLinks, services } from "@/data/content";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#060606] border-t border-white/[0.05]">
-      <div className="cw py-20 grid grid-cols-1 md:grid-cols-3 gap-16">
+    <footer style={{ background: "#050505", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+      <div style={{ height: "4px", background: "#cc0000" }} />
 
-        {/* Brand */}
-        <div>
-          <div className="flex items-center gap-3 mb-8">
-            <div className="relative w-9 h-9 flex-shrink-0">
-              <div className="absolute inset-0 bg-[#cc0000] rotate-45"/>
-              <span className="relative z-10 flex h-full items-center justify-center
-                               text-white font-black text-xs">R</span>
-            </div>
-            <div>
-              <p className="text-white font-black tracking-[0.22em] text-lg leading-none"
-                 style={{fontFamily:"var(--font-display)"}}>RTCC</p>
-              <p className="text-[#2a2a2a] text-[0.55rem] tracking-[0.2em] uppercase mt-0.5">
-                Concepts Ltd · {company.rc}
-              </p>
-            </div>
-          </div>
-          <p className="text-[#2e2e2e] text-[0.85rem] leading-[1.9] max-w-xs">{company.tagline}</p>
-          <div className="mt-7 w-16 h-px bg-gradient-to-r from-[#cc0000]/50 to-transparent"/>
-        </div>
+      <div className="container" style={{ paddingTop: "96px", paddingBottom: "80px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "64px 48px" }}>
 
-        {/* Quick links */}
-        <div>
-          <p className="text-[#282828] text-[0.6rem] tracking-[0.3em] uppercase font-semibold mb-7">
-            Quick Links
-          </p>
-          <ul className="space-y-4 list-none">
-            {["#about","#services","#experience","#partners","#contact"].map(h => (
-              <li key={h}>
-                <a href={h}
-                   className="text-[#2e2e2e] hover:text-[#cc0000] text-[0.85rem]
-                              capitalize tracking-wide transition-colors">
-                  {h.replace("#","")}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Contact */}
-        <div>
-          <p className="text-[#282828] text-[0.6rem] tracking-[0.3em] uppercase font-semibold mb-7">
-            Contact
-          </p>
-          <div className="space-y-5">
-            <div className="flex gap-3">
-              <MapPin size={15} className="text-[#cc0000] mt-0.5 flex-shrink-0"/>
-              <p className="text-[#2e2e2e] text-[0.85rem] leading-[1.85]">{company.address}</p>
-            </div>
-            {company.phones.map(ph => (
-              <div key={ph} className="flex gap-3 items-center">
-                <Phone size={15} className="text-[#cc0000] flex-shrink-0"/>
-                <a href={`tel:${ph}`}
-                   className="text-[#2e2e2e] hover:text-[#c9a84c] font-mono
-                              text-[0.82rem] transition-colors">
-                  {ph}
-                </a>
+          {/* Brand */}
+          <div style={{ gridColumn: "span 1" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "28px" }}>
+              <div style={{ position: "relative", width: "44px", height: "44px", flexShrink: 0 }}>
+                <div style={{ position: "absolute", inset: 0, background: "#cc0000", transform: "rotate(45deg)" }} />
+                <span style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "#fff", fontWeight: 900, fontSize: "16px" }}>R</span>
               </div>
-            ))}
-            <div className="flex gap-3 items-start">
-              <Building2 size={15} className="text-[#cc0000] mt-0.5 flex-shrink-0"/>
-              <p className="text-[#2e2e2e] text-[0.85rem]">
-                Est. {company.established} · Inc. {company.incorporated}
-              </p>
+              <div>
+                <div style={{ fontFamily: "var(--font-display)", color: "#fff", fontWeight: 900, fontSize: "22px", letterSpacing: "0.18em", lineHeight: 1 }}>RTCC</div>
+                <div style={{ color: "rgba(255,255,255,0.25)", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600, marginTop: "3px" }}>Concepts Ltd</div>
+              </div>
+            </div>
+            <p style={{ color: "rgba(255,255,255,0.28)", fontSize: "15px", lineHeight: "1.85", marginBottom: "24px", maxWidth: "260px" }}>{company.tagline}</p>
+            <p style={{ color: "rgba(255,255,255,0.18)", fontSize: "13px", fontFamily: "var(--font-mono)", letterSpacing: "0.06em" }}>{company.rc}</p>
+            <div style={{ marginTop: "24px", width: "48px", height: "3px", background: "#cc0000" }} />
+          </div>
+
+          {/* Navigation */}
+          <div>
+            <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "12px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "28px" }}>Navigation</p>
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "16px" }}>
+              {navLinks.map(l => (
+                <li key={l.href}>
+                  <Link href={l.href} style={{ display: "flex", alignItems: "center", gap: "10px", color: "rgba(255,255,255,0.38)", fontSize: "15px", textDecoration: "none", transition: "color 0.2s" }}
+                    onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+                    onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.38)")}>
+                    <ArrowRight size={14} color="#cc0000" style={{ flexShrink: 0 }} />
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "12px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "28px" }}>Services</p>
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "16px" }}>
+              {services.slice(0, 6).map(s => (
+                <li key={s.id}>
+                  <Link href={`/services#${s.id}`} style={{ display: "flex", alignItems: "center", gap: "10px", color: "rgba(255,255,255,0.38)", fontSize: "15px", textDecoration: "none", transition: "color 0.2s" }}
+                    onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+                    onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.38)")}>
+                    <ArrowRight size={14} color="#cc0000" style={{ flexShrink: 0 }} />
+                    {s.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "12px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "28px" }}>Contact</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+              <div style={{ display: "flex", gap: "14px" }}>
+                <MapPin size={17} color="#cc0000" style={{ flexShrink: 0, marginTop: "2px" }} />
+                <span style={{ color: "rgba(255,255,255,0.38)", fontSize: "15px", lineHeight: "1.75" }}>{company.address}</span>
+              </div>
+              {company.phones.map(ph => (
+                <div key={ph} style={{ display: "flex", gap: "14px", alignItems: "center" }}>
+                  <Phone size={15} color="#cc0000" style={{ flexShrink: 0 }} />
+                  <a href={`tel:${ph}`} style={{ color: "rgba(255,255,255,0.38)", fontSize: "15px", textDecoration: "none", fontFamily: "var(--font-mono)", transition: "color 0.2s" }}
+                    onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+                    onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.38)")}>{ph}</a>
+                </div>
+              ))}
+              <div style={{ display: "flex", gap: "14px", alignItems: "center" }}>
+                <Building2 size={15} color="#cc0000" style={{ flexShrink: 0 }} />
+                <span style={{ color: "rgba(255,255,255,0.38)", fontSize: "15px" }}>Est. {company.established} · Inc. {company.incorporated}</span>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
 
-      <div className="border-t border-white/[0.04] py-7">
-        <div className="cw flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-[#1e1e1e] text-[0.72rem] tracking-wider">
-            © {new Date().getFullYear()} RTCC Concepts Ltd · {company.rc} · All rights reserved.
-          </p>
-          <p className="text-[#1e1e1e] text-[0.72rem] tracking-wider">FCT Abuja, Nigeria</p>
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", padding: "24px 0" }}>
+        <div className="container" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "12px" }}>
+          <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "14px" }}>© {new Date().getFullYear()} RTCC Concepts Ltd · All rights reserved.</span>
+          <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "14px" }}>FCT Abuja, Nigeria</span>
         </div>
       </div>
     </footer>

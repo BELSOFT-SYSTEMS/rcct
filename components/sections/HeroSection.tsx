@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { ArrowDown, ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { company, stats } from "@/data/content";
 
 export default function HeroSection() {
@@ -9,108 +10,121 @@ export default function HeroSection() {
     const el = ref.current; if (!el) return;
     const fn = (e: MouseEvent) => {
       const r = el.getBoundingClientRect();
-      el.style.setProperty("--mx", `${((e.clientX-r.left)/r.width)*100}%`);
-      el.style.setProperty("--my", `${((e.clientY-r.top)/r.height)*100}%`);
+      el.style.setProperty("--mx", `${((e.clientX - r.left) / r.width) * 100}%`);
+      el.style.setProperty("--my", `${((e.clientY - r.top) / r.height) * 100}%`);
     };
     el.addEventListener("mousemove", fn);
     return () => el.removeEventListener("mousemove", fn);
   }, []);
 
   return (
-    <section ref={ref} id="home"
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden"
-      style={{background:`
-        radial-gradient(ellipse at var(--mx,25%) var(--my,50%),rgba(204,0,0,.09) 0%,transparent 50%),
-        radial-gradient(ellipse at 85% 10%,rgba(201,168,76,.05) 0%,transparent 40%),
-        #090909`}}>
+    <section ref={ref} id="home" style={{
+      position: "relative", minHeight: "100vh",
+      display: "flex", flexDirection: "column", overflow: "hidden",
+      background: "radial-gradient(ellipse at var(--mx,20%) var(--my,60%), rgba(204,0,0,0.1) 0%, transparent 55%), #080808",
+    }}>
+      {/* Grid texture */}
+      <div style={{
+        position: "absolute", inset: 0, opacity: 0.02, pointerEvents: "none",
+        backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)",
+        backgroundSize: "80px 80px",
+      }} />
 
-      {/* Faint grid */}
-      <div className="absolute inset-0 opacity-[0.022]" style={{
-        backgroundImage:`linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),
-                         linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px)`,
-        backgroundSize:"110px 110px"}}/>
+      {/* Left red bar */}
+      <div style={{
+        position: "absolute", left: 0, top: 0, bottom: 0, width: "4px",
+        background: "linear-gradient(to bottom, transparent, #cc0000 30%, #cc0000 70%, transparent)",
+      }} />
 
-      {/* Left red sliver */}
-      <div className="absolute left-0 inset-y-0 w-[3px]
-                      bg-gradient-to-b from-transparent via-[#cc0000]/60 to-transparent"/>
+      {/* Ghost RTCC */}
+      <div style={{
+        position: "absolute", right: "-1vw", bottom: "80px",
+        fontFamily: "var(--font-display)", fontWeight: 900,
+        fontSize: "clamp(120px, 26vw, 300px)", lineHeight: 1,
+        color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.025)",
+        pointerEvents: "none", userSelect: "none",
+      }}>RTCC</div>
 
-      {/* Ghost wordmark */}
-      <div className="absolute right-[-1vw] top-1/2 -translate-y-1/2
-                      text-[20vw] font-black leading-none select-none pointer-events-none"
-           style={{fontFamily:"var(--font-display)",color:"transparent",
-                   WebkitTextStroke:"1px rgba(255,255,255,0.03)"}}>
-        RTCC
-      </div>
-
-      {/* RC badge */}
-      <div className="absolute top-[104px] right-0 cw flex justify-end">
-        <div className="flex items-center gap-2 border border-white/[0.07] px-3 py-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#cc0000] animate-pulse block"/>
-          <span className="text-[#333] font-mono text-[0.58rem] tracking-[0.3em]">{company.rc}</span>
+      {/* Main content */}
+      <div className="container rise-1" style={{
+        flex: 1, display: "flex", flexDirection: "column",
+        justifyContent: "flex-end", paddingTop: "160px", paddingBottom: "0",
+      }}>
+        {/* Overline */}
+        <div className="rise-1" style={{
+          display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px",
+        }}>
+          <div style={{ width: "44px", height: "3px", background: "#cc0000", flexShrink: 0 }} />
+          <span style={{ color: "#cc0000", fontSize: "13px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>
+            Est. {company.established} · Abuja, Nigeria
+          </span>
         </div>
-      </div>
 
-      {/* ── Content ── */}
-      <div className="cw relative z-10 w-full pt-36 pb-24">
+        {/* Headline */}
+        <h1 className="rise-2 h-display h1" style={{ color: "#fff", marginBottom: "44px", maxWidth: "960px" }}>
+          <span style={{ display: "block" }}>ENGINEERING</span>
+          <span style={{ display: "block", color: "#cc0000" }}>EXCELLENCE</span>
+          <span style={{ display: "block", color: "rgba(255,255,255,0.07)" }}>IN NIGERIA</span>
+        </h1>
 
-        {/* Eyebrow */}
-        <div className="eyebrow f1">
-          <span className="eyebrow-line bg-[#cc0000]"/>
-          <span className="eyebrow-text text-[#cc0000]">Est. {company.established} &nbsp;·&nbsp; Abuja, Nigeria</span>
-        </div>
-
-        {/* Headline + body — side by side on lg */}
-        <div className="grid lg:grid-cols-[1fr_380px] gap-20 lg:gap-28 items-end mb-24">
-          <h1 className="f2 text-[clamp(4.5rem,11vw,9rem)] font-black leading-[0.87] tracking-tight"
-              style={{fontFamily:"var(--font-display)"}}>
-            <span className="block text-white">ENGINEERING</span>
-            <span className="block text-[#cc0000]">EXCELLENCE</span>
-            <span className="block text-white/[0.12]">IN NIGERIA</span>
-          </h1>
-
-          <div className="f3 flex flex-col gap-8 pb-1">
-            <p className="text-[#4e4e4e] text-[1.05rem] leading-[1.95]">
-              Civil engineering, telecommunications, oil&nbsp;&amp;&nbsp;gas and
-              procurement — delivering quality across Nigeria and beyond since&nbsp;2008.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a href="#services"
-                 className="inline-flex items-center justify-center gap-2 px-8 py-4
-                            bg-[#cc0000] hover:bg-[#e00] text-white
-                            text-[0.65rem] font-bold tracking-[0.22em] uppercase transition-colors group">
-                Our Services
-                <ChevronRight size={13} className="group-hover:translate-x-0.5 transition-transform"/>
-              </a>
-              <a href="#experience"
-                 className="inline-flex items-center justify-center px-8 py-4
-                            border border-white/[0.09] text-[#4a4a4a] hover:border-white/20
-                            hover:text-[#999] text-[0.65rem] font-bold tracking-[0.22em]
-                            uppercase transition-all">
-                Our Work
-              </a>
-            </div>
+        {/* Description + CTAs */}
+        <div className="rise-3" style={{
+          maxWidth: "580px", marginBottom: "0",
+          display: "flex", flexDirection: "column", gap: "36px",
+        }}>
+          <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "19px", lineHeight: "1.85", margin: 0 }}>
+            Civil engineering, telecommunications, oil &amp; gas and procurement —
+            delivering quality across Nigeria and beyond since {company.established}.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
+            <Link href="/services" className="btn btn-red">
+              Our Services <ArrowRight size={17} />
+            </Link>
+            <Link href="/contact" className="btn btn-outline">
+              Get in Touch
+            </Link>
           </div>
         </div>
+      </div>
 
-        {/* Stats — open, no border box */}
-        <div className="f4 rule mb-0"/>
-        <div className="f5 grid grid-cols-2 lg:grid-cols-4">
-          {stats.map((s, i) => (
-            <div key={s.label}
-                 className={`py-10 ${i > 0 ? "pl-10 border-l border-white/[0.06]" : ""}`}>
-              <p className="text-[clamp(2.8rem,5vw,4rem)] font-black text-white leading-none mb-3"
-                 style={{fontFamily:"var(--font-display)"}}>{s.value}</p>
-              <p className="text-[#323232] text-[0.62rem] tracking-[0.2em] uppercase">{s.label}</p>
-            </div>
-          ))}
+      {/* Stats strip */}
+      <div className="rise-4" style={{
+        position: "relative", zIndex: 10, marginTop: "72px",
+        background: "rgba(0,0,0,0.55)", backdropFilter: "blur(10px)",
+        borderTop: "1px solid rgba(255,255,255,0.08)",
+      }}>
+        <div className="container">
+          <div className="stats-grid" style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            borderLeft: "1px solid rgba(255,255,255,0.07)",
+          }}>
+            {stats.map((s, i) => (
+              <div key={s.label} style={{
+                padding: "36px 40px",
+                borderRight: "1px solid rgba(255,255,255,0.07)",
+                borderBottom: i < 2 ? "1px solid rgba(255,255,255,0.07)" : undefined,
+              }}>
+                <div className="h-display" style={{
+                  color: "#fff", fontSize: "clamp(40px, 5vw, 64px)",
+                  lineHeight: 1, marginBottom: "8px",
+                }}>{s.value}</div>
+                <div style={{
+                  color: "rgba(255,255,255,0.4)", fontSize: "12px",
+                  fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase",
+                }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Scroll hint */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2
-                      flex flex-col items-center gap-2.5 opacity-[0.18] animate-bounce">
-        <ArrowDown size={14} className="text-white"/>
-        <span className="text-white text-[0.52rem] tracking-[0.45em] uppercase">Scroll</span>
+      {/* Scroll nudge */}
+      <div style={{
+        position: "absolute", bottom: "200px", left: "50%",
+        transform: "translateX(-50%)", opacity: 0.2,
+      }}>
+        <ChevronDown size={22} color="#fff" />
       </div>
     </section>
   );
