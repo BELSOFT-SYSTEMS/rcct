@@ -1,0 +1,430 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-red: #CC0000;
+  --color-brand-red-dark: #990000;
+  --color-brand-black: #0A0A0A;
+  --color-brand-gray-dark: #1A1A1A;
+  --color-brand-gray-mid: #4A4A4A;
+  --color-brand-gray-light: #F7F7F5;
+  --color-brand-gray-border: #E8E8E5;
+}
+
+:root {
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --red: #CC0000;
+  --red-dark: #990000;
+  --black: #0A0A0A;
+  --gray-mid: #4A4A4A;
+  --gray-light: #F7F7F5;
+  --gray-border: #E8E8E5;
+}
+
+/* ── Reset ──────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: #0A0A0A;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #CC0000; }
+::selection { background: #CC0000; color: #fff; }
+
+/* ── Typography scale ───────────────────────── */
+.text-display { font-family: var(--font-display); }
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #CC0000;
+  font-weight: 500;
+}
+
+/* ── Buttons ────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #CC0000;
+  color: white;
+  padding: 16px 36px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid #CC0000;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transform: translateX(-101%);
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+.btn-primary:hover::before { transform: translateX(0); }
+.btn-primary:hover { color: #CC0000; box-shadow: 0 8px 24px rgba(204,0,0,0.25); }
+.btn-primary span, .btn-primary svg { position: relative; z-index: 1; }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: #CC0000;
+  padding: 14px 34px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid #CC0000;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.btn-outline:hover { background: #CC0000; color: white; box-shadow: 0 8px 24px rgba(204,0,0,0.2); }
+
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  color: #CC0000;
+  padding: 16px 36px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid white;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.btn-white:hover { background: transparent; color: white; }
+
+/* ── Nav ────────────────────────────────────── */
+.nav-link {
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: #0A0A0A;
+  text-decoration: none;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 2px;
+  background: #CC0000;
+  transition: width 0.3s ease;
+}
+.nav-link:hover { color: #CC0000; }
+.nav-link:hover::after { width: 100%; }
+.nav-link.active { color: #CC0000; }
+.nav-link.active::after { width: 100%; }
+
+/* ── Cards ──────────────────────────────────── */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.1);
+}
+
+/* ── Section spacing ────────────────────────── */
+.section-pad { padding: clamp(80px, 10vw, 140px) 0; }
+.section-pad-sm { padding: clamp(56px, 7vw, 96px) 0; }
+
+/* ── Scroll-triggered reveal ────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.in-view { opacity: 1; transform: none; }
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal-left.in-view { opacity: 1; transform: none; }
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal-right.in-view { opacity: 1; transform: none; }
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal-scale.in-view { opacity: 1; transform: none; }
+
+.delay-1 { transition-delay: 0.08s; }
+.delay-2 { transition-delay: 0.16s; }
+.delay-3 { transition-delay: 0.24s; }
+.delay-4 { transition-delay: 0.32s; }
+.delay-5 { transition-delay: 0.40s; }
+.delay-6 { transition-delay: 0.50s; }
+
+/* ── Hero animations ────────────────────────── */
+@keyframes heroUp {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes heroFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes heroLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes drawLine {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.h-fade    { animation: heroFade 1s 0.1s ease both; }
+.h-up-1    { animation: heroUp  1s 0.2s cubic-bezier(0.22,1,0.36,1) both; }
+.h-up-2    { animation: heroUp  1s 0.38s cubic-bezier(0.22,1,0.36,1) both; }
+.h-up-3    { animation: heroUp  1s 0.52s cubic-bezier(0.22,1,0.36,1) both; }
+.h-up-4    { animation: heroUp  1s 0.66s cubic-bezier(0.22,1,0.36,1) both; }
+.h-left-1  { animation: heroLeft 1s 0.3s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* ── Ticker ─────────────────────────────────── */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker { animation: ticker 55s linear infinite; }
+
+/* ── Red line accent ─────────────────────────── */
+.red-line { width: 48px; height: 3px; background: #CC0000; display: block; }
+
+/* ── Hover service card ─────────────────────── */
+.svc-card {
+  border: 1px solid #E8E8E5;
+  transition: border-color 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.svc-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: #CC0000;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.svc-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(0,0,0,0.1); border-color: #CC0000; }
+.svc-card:hover::before { transform: scaleX(1); }
+
+.svc-icon {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(204,0,0,0.08);
+  border: 1px solid rgba(204,0,0,0.15);
+  transition: background 0.3s ease, border-color 0.3s;
+}
+.svc-card:hover .svc-icon { background: #CC0000; border-color: #CC0000; }
+.svc-card:hover .svc-icon svg { color: white !important; }
+.svc-icon svg { transition: color 0.3s ease; }
+
+/* ── Number counter ─────────────────────────── */
+.stat-number {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ── Image overlay ──────────────────────────── */
+.img-hover { overflow: hidden; }
+.img-hover img,
+.img-hover .img-bg {
+  transition: transform 0.7s ease;
+}
+.img-hover:hover .img-bg { transform: scale(1.06); }
+
+/* ── Page hero ──────────────────────────────── */
+.page-hero {
+  position: relative;
+  padding: 180px 0 100px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.65) 100%);
+}
+
+/* ── Timeline ───────────────────────────────── */
+.timeline-item {
+  position: relative;
+  padding-left: 52px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 14px; top: 28px; bottom: -32px;
+  width: 1px;
+  background: #E8E8E5;
+}
+.timeline-item:last-child::before { display: none; }
+
+/* ── Form inputs ────────────────────────────── */
+.form-input {
+  width: 100%;
+  background: white;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-family: var(--font-body);
+  color: #0A0A0A;
+  border: 1.5px solid #E8E8E5;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-input:focus {
+  border-color: #CC0000;
+  box-shadow: 0 0 0 3px rgba(204,0,0,0.08);
+}
+.form-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #4A4A4A;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+/* ── Cert card ──────────────────────────────── */
+.cert-card {
+  border: 1px solid #E8E8E5;
+  border-left: 4px solid #CC0000;
+  padding: 24px;
+  background: white;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.cert-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.08); transform: translateY(-3px); }
+
+/* ── Project card ───────────────────────────── */
+.project-card {
+  border: 1px solid #E8E8E5;
+  background: white;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(0,0,0,0.1); }
+.project-card .card-top { height: 4px; background: #CC0000; }
+
+/* ── Red banner ─────────────────────────────── */
+.red-banner {
+  position: relative;
+  overflow: hidden;
+}
+.red-banner::after {
+  content: 'RTCC';
+  position: absolute;
+  right: -3vw;
+  bottom: -10px;
+  font-family: var(--font-display);
+  font-size: clamp(100px, 18vw, 220px);
+  font-weight: 900;
+  color: rgba(255,255,255,0.05);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Partner pill ───────────────────────────── */
+.partner-pill {
+  padding: 14px 28px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: 1.5px solid #E8E8E5;
+  background: #F7F7F5;
+  color: #4A4A4A;
+  cursor: default;
+  transition: all 0.25s ease;
+}
+.partner-pill:hover { border-color: #CC0000; color: #CC0000; background: white; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+
+/* ── Certifications strip ───────────────────── */
+.cert-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.55);
+  transition: color 0.2s;
+}
+.cert-item:hover { color: rgba(255,255,255,0.9); }
+
+/* ── CSS-only hover effects (replaces all onMouseEnter/onMouseLeave) ── */
+
+/* Footer links */
+.footer-link { color: #666; font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: color 0.2s; }
+.footer-link:hover { color: #fff; }
+
+/* Footer phone/email links */
+.footer-contact-link { color: #666; font-size: 14px; text-decoration: none; transition: color 0.2s; }
+.footer-contact-link:hover { color: #fff; }
+
+/* Services quick-nav anchors */
+.svc-nav-link {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px 20px; background: white;
+  border: 1px solid #E8E8E5; text-decoration: none;
+  color: #0A0A0A; font-size: 13px; font-weight: 500;
+  transition: border-color 0.2s, color 0.2s;
+}
+.svc-nav-link:hover { border-color: #CC0000; color: #CC0000; }
+
+/* Partner pill hover already handled by .partner-pill */
+
+/* Image bg zoom (CSS only via parent hover) */
+.img-hover:hover .img-bg { transform: scale(1.06); }
