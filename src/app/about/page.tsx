@@ -34,7 +34,7 @@ export default function AboutPage() {
       <section className="page-hero" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1800&q=80')" }}>
         <div className="page-hero-overlay" />
         <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "5px", background: R }} />
-        <div className="relative max-w-7xl mx-auto px-8">
+        <div className="container">
           <span className="label h-left-1" style={{ color: "rgba(255,255,255,0.6)" }}>Who We Are</span>
           <div style={{ width: "40px", height: "3px", background: R, margin: "12px 0 24px" }} className="h-left-1" />
           <h1 className="h-up-1" style={{ fontFamily: "var(--font-display)", fontWeight: 700, color: "white", fontSize: "clamp(2.8rem,6vw,4.5rem)", lineHeight: 1.05, marginBottom: "20px" }}>
@@ -52,7 +52,7 @@ export default function AboutPage() {
 
       {/* Company Overview */}
       <section style={{ background: "white" }} className="section-pad">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container">
           <div className="grid lg:grid-cols-2 gap-20 items-start">
             <ScrollReveal animation="reveal-left">
               <span className="label">Our Story</span>
@@ -94,7 +94,7 @@ export default function AboutPage() {
 
       {/* Vision & Mission */}
       <section style={{ background: "#0A0A0A" }} className="section-pad-sm">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container">
           <div className="grid md:grid-cols-2 gap-1">
             <ScrollReveal animation="reveal-left">
               <div style={{ padding: "64px 56px", background: "#141414", height: "100%" }}>
@@ -126,7 +126,7 @@ export default function AboutPage() {
 
       {/* Core Values */}
       <section style={{ background: "#F7F7F5" }} className="section-pad">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container">
           <ScrollReveal animation="reveal" className="text-center" style={{ marginBottom: "64px" }}>
             <span className="label">How We Work</span>
             <div style={{ width: "40px", height: "3px", background: R, margin: "12px auto 20px" }} />
@@ -150,7 +150,7 @@ export default function AboutPage() {
 
       {/* Certifications */}
       <section style={{ background: "white", borderTop: "1px solid #E8E8E5" }} className="section-pad-sm">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container">
           <ScrollReveal animation="reveal" className="text-center" style={{ marginBottom: "56px" }}>
             <span className="label">Credentials</span>
             <div style={{ width: "40px", height: "3px", background: R, margin: "12px auto 20px" }} />
@@ -173,7 +173,7 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section style={{ background: R }} className="section-pad-sm">
-        <div className="max-w-5xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="container flex flex-col md:flex-row items-center justify-between gap-8">
           <ScrollReveal animation="reveal-left">
             <h3 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem,3vw,2.6rem)", fontWeight: 700, color: "white", marginBottom: "10px" }}>Ready to partner with us?</h3>
             <p style={{ color: "rgba(255,255,255,0.78)", fontSize: "15px" }}>Reach out today and let&apos;s build something extraordinary together.</p>

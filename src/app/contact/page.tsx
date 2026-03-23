@@ -34,7 +34,7 @@ export default function ContactPage() {
       <section className="page-hero" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1800&q=80')" }}>
         <div className="page-hero-overlay" />
         <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "5px", background: R }} />
-        <div className="relative max-w-7xl mx-auto px-8">
+        <div className="container">
           <span className="label h-left-1" style={{ color:"rgba(255,255,255,0.6)" }}>Get In Touch</span>
           <div style={{ width:"40px", height:"3px", background:R, margin:"12px 0 24px" }} className="h-left-1" />
           <h1 className="h-up-1" style={{ fontFamily:"var(--font-display)", fontWeight:700, color:"white", fontSize:"clamp(2.8rem,6vw,4.5rem)", lineHeight:1.05, marginBottom:"20px" }}>
@@ -52,7 +52,7 @@ export default function ContactPage() {
 
       {/* Main section */}
       <section style={{ background:"white" }} className="section-pad">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container">
           <div className="grid lg:grid-cols-5 gap-16">
 
             {/* Info column */}

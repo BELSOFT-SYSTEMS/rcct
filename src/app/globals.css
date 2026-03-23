@@ -158,8 +158,38 @@ body {
 }
 
 /* ── Section spacing ────────────────────────── */
-.section-pad { padding: clamp(80px, 10vw, 140px) 0; }
-.section-pad-sm { padding: clamp(56px, 7vw, 96px) 0; }
+.section-pad { 
+  padding: clamp(80px, 10vw, 140px) 0; 
+}
+.section-pad-sm { 
+  padding: clamp(56px, 7vw, 96px) 0; 
+}
+
+/* ── Container with proper margins ───────────── */
+.container {
+  max-width: 1400px;
+  margin-left: clamp(24px, 5vw, 88px);
+  margin-right: clamp(24px, 5vw, 88px);
+  width: calc(100% - clamp(48px, 10vw, 176px));
+}
+
+/* ── Full width container for hero ──────────── */
+.container-full {
+  max-width: 1400px;
+  margin-left: clamp(24px, 5vw, 88px);
+  margin-right: clamp(24px, 5vw, 88px);
+  width: calc(100% - clamp(48px, 10vw, 176px));
+}
+
+/* ── Mobile responsive fixes ─────────────────── */
+@media (max-width: 768px) {
+  .container,
+  .container-full {
+    margin-left: clamp(16px, 4vw, 24px);
+    margin-right: clamp(16px, 4vw, 24px);
+    width: calc(100% - clamp(32px, 8vw, 48px));
+  }
+}
 
 /* ── Scroll-triggered reveal ────────────────── */
 .reveal {

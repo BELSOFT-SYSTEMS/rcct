@@ -30,7 +30,7 @@ export default function Navbar() {
       {/* Top utility bar */}
       <div className="hidden md:flex items-center justify-between text-xs"
         style={{ background: "#0A0A0A", padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-        <div className="max-w-7xl mx-auto px-8 w-full flex items-center justify-between">
+        <div className="container flex items-center justify-between">
           <span style={{ fontFamily: "var(--font-mono)", color: "#666", letterSpacing: "0.1em" }}>
             RC1150194 &mdash; Suite 6, Shema Complex, Asokoro Extension, FCT Abuja
           </span>
@@ -50,14 +50,11 @@ export default function Navbar() {
         boxShadow: scrolled ? "0 4px 32px rgba(0,0,0,0.07)" : "none",
         transition: "box-shadow 0.3s ease, backdrop-filter 0.3s ease",
       }}>
-        <div className="max-w-7xl mx-auto px-8 flex items-center justify-between" style={{ height: "72px" }}>
+        <div className="container flex items-center justify-between" style={{ height: "72px" }}>
 
           {/* Logo */}
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: "14px", textDecoration: "none" }}>
-            <div style={{ position: "relative", width: "42px", height: "42px", background: "#0A0A0A", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-              <div style={{ position: "absolute", bottom: 0, right: 0, width: "18px", height: "18px", background: "#CC0000" }} />
-              <span style={{ position: "relative", zIndex: 1, fontFamily: "var(--font-display)", color: "white", fontWeight: 700, fontSize: "18px" }}>R</span>
-            </div>
+            <img src="/logo-2.png" alt="RTCC Logo" style={{ width: "42px", height: "42px" }} />
             <div>
               <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "20px", lineHeight: 1, color: "#0A0A0A", letterSpacing: "0.01em" }}>
                 RT<span style={{ color: "#CC0000" }}>CC</span>
@@ -100,7 +97,7 @@ export default function Navbar() {
           background: "white",
           borderTop: "1px solid #E8E8E5",
         }}>
-          <div style={{ padding: "20px 32px 32px" }}>
+          <div className="container" style={{ padding: "20px 0 32px" }}>
             {navLinks.map(l => (
               <Link key={l.href} href={l.href}
                 style={{

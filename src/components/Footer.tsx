@@ -19,16 +19,13 @@ export default function Footer() {
       {/* Top red bar */}
       <div style={{ height: "4px", background: "#CC0000" }} />
 
-      <div className="max-w-7xl mx-auto px-8" style={{ paddingTop: "88px", paddingBottom: "72px" }}>
+      <div className="container" style={{ paddingTop: "88px", paddingBottom: "72px" }}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10">
 
           {/* Brand */}
           <div>
             <Link href="/" style={{ display: "flex", alignItems: "center", gap: "14px", textDecoration: "none", marginBottom: "28px" }}>
-              <div style={{ position: "relative", width: "42px", height: "42px", background: "white", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-                <div style={{ position: "absolute", bottom: 0, right: 0, width: "18px", height: "18px", background: "#CC0000" }} />
-                <span style={{ position: "relative", zIndex: 1, fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "18px", color: "#0A0A0A" }}>R</span>
-              </div>
+              <img src="/logo-3.png" alt="RTCC Logo" style={{ width: "42px", height: "42px" }} />
               <div>
                 <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "20px", lineHeight: 1, color: "white" }}>
                   RT<span style={{ color: "#CC0000" }}>CC</span>
@@ -115,7 +112,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-        <div className="max-w-7xl mx-auto px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
+        <div className="container py-5 flex flex-col md:flex-row items-center justify-between gap-3">
           <p style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "#444", letterSpacing: "0.06em" }}>
             © {new Date().getFullYear()} RTCC Concepts Limited. RC1150194. All rights reserved.
           </p>

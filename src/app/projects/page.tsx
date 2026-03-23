@@ -28,7 +28,7 @@ export default function ProjectsPage() {
       <section className="page-hero" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1800&q=80')" }}>
         <div className="page-hero-overlay" />
         <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "5px", background: R }} />
-        <div className="relative max-w-7xl mx-auto px-8">
+        <div className="container">
           <span className="label h-left-1" style={{ color: "rgba(255,255,255,0.6)" }}>Our Portfolio</span>
           <div style={{ width: "40px", height: "3px", background: R, margin: "12px 0 24px" }} className="h-left-1" />
           <h1 className="h-up-1" style={{ fontFamily: "var(--font-display)", fontWeight: 700, color: "white", fontSize: "clamp(2.8rem,6vw,4.5rem)", lineHeight: 1.05, marginBottom: "20px" }}>
@@ -46,7 +46,7 @@ export default function ProjectsPage() {
 
       {/* Stats */}
       <div style={{ background: "#0A0A0A", padding: "56px 0" }}>
-        <div className="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="container grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[{value:"16+",label:"Major Projects"},{value:"5+",label:"Nigerian States"},{value:"2",label:"Countries"},{value:"8+",label:"Key Clients"}].map(({value,label}, i) => (
             <ScrollReveal key={label} animation="reveal" delay={(i+1) as any}>
               <div style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.4rem,4vw,3.2rem)", fontWeight: 700, color: R, marginBottom: "8px" }}>{value}</div>
@@ -58,7 +58,7 @@ export default function ProjectsPage() {
 
       {/* Projects grid */}
       <section style={{ background: "white" }} className="section-pad">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {projects.map((p, i) => (
               <ScrollReveal key={p.id} animation="reveal" delay={((i % 3) + 1) as any}>
@@ -96,7 +96,7 @@ export default function ProjectsPage() {
 
       {/* Partners */}
       <section style={{ background: "#F7F7F5", borderTop: "1px solid #E8E8E5" }} className="section-pad-sm">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container">
           <ScrollReveal animation="reveal" className="text-center" style={{ marginBottom: "48px" }}>
             <span className="label">Clients &amp; Partners</span>
             <div style={{ width: "40px", height: "3px", background: R, margin: "12px auto 20px" }} />

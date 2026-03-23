@@ -42,10 +42,10 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="page-hero" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1800&q=80')" }}>
+      <section className="page-hero" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1800&q=80')" }}>
         <div className="page-hero-overlay" />
         <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "5px", background: R }} />
-        <div className="relative max-w-7xl mx-auto px-8">
+        <div className="container">
           <span className="label h-left-1" style={{ color: "rgba(255,255,255,0.6)" }}>What We Do</span>
           <div style={{ width: "40px", height: "3px", background: R, margin: "12px 0 24px" }} className="h-left-1" />
           <h1 className="h-up-1" style={{ fontFamily: "var(--font-display)", fontWeight: 700, color: "white", fontSize: "clamp(2.8rem,6vw,4.5rem)", lineHeight: 1.05, marginBottom: "20px" }}>
@@ -63,7 +63,7 @@ export default function ServicesPage() {
 
       {/* Quick nav — CSS-only hover via .svc-nav-link class */}
       <section style={{ background: "#F7F7F5", borderBottom: "1px solid #E8E8E5", padding: "20px 0" }}>
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {services.map(({ id, icon: Icon, title }) => (
               <a key={id} href={`#${id}`} className="svc-nav-link">
@@ -78,7 +78,7 @@ export default function ServicesPage() {
       {/* Service detail sections */}
       {services.map(({ id, icon: Icon, title, tagline, desc, capabilities, projects }, idx) => (
         <section key={id} id={id} className="section-pad" style={{ background: idx % 2 === 0 ? "white" : "#F7F7F5" }}>
-          <div className="max-w-7xl mx-auto px-8">
+          <div className="container">
             <div className="grid lg:grid-cols-2 gap-20 items-start">
 
               {/* Left */}

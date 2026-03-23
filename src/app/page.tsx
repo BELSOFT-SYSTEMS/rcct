@@ -60,7 +60,7 @@ export default function HomePage() {
         {/* Bottom fade */}
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "120px", background: "linear-gradient(to top, white, transparent)" }} />
 
-        <div className="relative max-w-7xl mx-auto px-8 w-full" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
+        <div className="container" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
           <div style={{ maxWidth: "740px" }}>
             {/* Label */}
             <div className="h-left-1 flex items-center gap-4" style={{ marginBottom: "32px" }}>
@@ -112,7 +112,7 @@ export default function HomePage() {
 
       {/* ── STATS BAR ────────────────────────────────────── */}
       <section style={{ borderTop: "1px solid #E8E8E5", borderBottom: "1px solid #E8E8E5", background: "white" }}>
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4">
             {stats.map(({ value, label, icon: Icon }, i) => (
               <ScrollReveal key={label} delay={(i + 1) as any} animation="reveal"
@@ -130,7 +130,7 @@ export default function HomePage() {
 
       {/* ── ABOUT TEASER ─────────────────────────────────── */}
       <section style={{ background: "#F7F7F5" }} className="section-pad">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             {/* Left */}
             <div>
@@ -170,10 +170,10 @@ export default function HomePage() {
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
                   <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                     <div className="img-hover" style={{ height: "200px", overflow: "hidden" }}>
-                      <div className="img-bg" style={{ height: "100%", backgroundImage: "url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80')", backgroundSize: "cover", backgroundPosition: "center" }} />
+                      <div className="img-bg" style={{ height: "100%", backgroundImage: "url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80')", backgroundSize: "cover", backgroundPosition: "center" }} />
                     </div>
                     <div className="img-hover" style={{ height: "140px", overflow: "hidden" }}>
-                      <div className="img-bg" style={{ height: "100%", backgroundImage: "url('https://images.unsplash.com/photo-1562408590-e32931084e23?w=600&q=80')", backgroundSize: "cover", backgroundPosition: "center" }} />
+                      <div className="img-bg" style={{ height: "100%", backgroundImage: "url('https://images.unsplash.com/photo-1464207687429-750564970381?w=600&q=80')", backgroundSize: "cover", backgroundPosition: "center" }} />
                     </div>
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: "12px", paddingTop: "36px" }}>
@@ -181,7 +181,7 @@ export default function HomePage() {
                       <div className="img-bg" style={{ height: "100%", backgroundImage: "url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80')", backgroundSize: "cover", backgroundPosition: "center" }} />
                     </div>
                     <div className="img-hover" style={{ height: "200px", overflow: "hidden" }}>
-                      <div className="img-bg" style={{ height: "100%", backgroundImage: "url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80')", backgroundSize: "cover", backgroundPosition: "center" }} />
+                      <div className="img-bg" style={{ height: "100%", backgroundImage: "url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&q=80')", backgroundSize: "cover", backgroundPosition: "center" }} />
                     </div>
                   </div>
                 </div>
@@ -198,7 +198,7 @@ export default function HomePage() {
 
       {/* ── SERVICES ─────────────────────────────────────── */}
       <section style={{ background: "white" }} className="section-pad">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container">
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "20px", marginBottom: "64px" }}>
             <ScrollReveal animation="reveal-left">
               <span className="label">What We Do</span>
@@ -240,7 +240,7 @@ export default function HomePage() {
         backgroundSize: "cover", backgroundPosition: "center",
       }}>
         <div style={{ position: "absolute", inset: 0, background: "rgba(180,0,0,0.92)" }} />
-        <div style={{ position: "relative", maxWidth: "1120px", margin: "0 auto", padding: "100px 32px", textAlign: "center" }}>
+        <div className="container-full" style={{ textAlign: "center", padding: "100px 0" }}>
           <ScrollReveal animation="reveal">
             <div style={{ width: "40px", height: "3px", background: "rgba(255,255,255,0.4)", margin: "0 auto 32px" }} />
             <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem,5vw,3.6rem)", fontWeight: 700, color: "white", lineHeight: 1.1, marginBottom: "24px" }}>
@@ -269,7 +269,7 @@ export default function HomePage() {
 
       {/* ── PROJECTS ─────────────────────────────────────── */}
       <section style={{ background: "#F7F7F5" }} className="section-pad">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container">
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "20px", marginBottom: "64px" }}>
             <ScrollReveal animation="reveal-left">
               <span className="label">Our Work</span>
@@ -312,7 +312,7 @@ export default function HomePage() {
 
       {/* ── PARTNERS ─────────────────────────────────────── */}
       <section style={{ background: "white", borderTop: "1px solid #E8E8E5" }} className="section-pad-sm">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container">
           <ScrollReveal animation="reveal" className="text-center" style={{ marginBottom: "52px" }}>
             <span className="label">Trusted By</span>
             <div style={{ width: "40px", height: "3px", background: R, margin: "12px auto 20px" }} />
@@ -355,7 +355,7 @@ export default function HomePage() {
 
       {/* ── CERTS STRIP ──────────────────────────────────── */}
       <section style={{ background: "#0A0A0A", padding: "48px 0" }}>
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container">
           <div className="cert-strip">
             {certs.map(({ icon: Icon, label, sub }) => (
               <div key={label} className="cert-item">
